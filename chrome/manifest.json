@@ -1,0 +1,33 @@
+{
+  "name": "GitHub Issue Generator",
+  "version": "0.1.0",
+  "manifest_version": 2,
+  "description": "Create GitHub issues with custom templates automatically applied",
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png"
+  },
+  "permissions": [
+    "*://github.com/",
+    "tabs"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["*://github.com/*/issues/new"],
+      "js": [
+        "script/lib/jquery.min.js",
+        "script/lib/jquery.cursor-position.js",
+        "script/lib/jquery.select-range.js",
+        "script/new-issue-page.js"
+      ]
+    }
+  ],
+  "browser_action": {
+    "default_icon": {
+      "19": "icon19.png"
+    },
+    "default_title": "Create new Github Issue",
+    "default_popup": "popup.html"
+  },
+  "options_page": "options.html"
+}
