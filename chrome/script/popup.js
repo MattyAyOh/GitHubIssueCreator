@@ -17,7 +17,8 @@ $(function() {
     $('#repos').append('<li>' +
       '<a href="' + href + '">' + user + '/<strong>' + repo + '</strong></a>' +
     '</li>');
-    localStorage['issueTemplate'] = 'https://github.com/' + path[0] + '/' + path[1] + '/blob/master/ISSUETEMPLATE.md';
+
+    chrome.runtime.sendMessage({method: "saveTemplateLocation", location: 'https://rawgit.com/' + path[0] + '/' + path[1] + '/master/ISSUETEMPLATE.md'}, function(response) {});
   }
   // Catch click events on the repo links and communicate with the chrome tabs
   // in order to load the corresponding repo location

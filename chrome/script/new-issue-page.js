@@ -1,29 +1,31 @@
-var TEMPLATE_PATH = 'https://rawgit.com/skidding/github-issue-template/master/template.md'
 var $ISSUE_TITLE = $('.composer [name="issue[title]"]');
 var $ISSUE_BODY = $('.composer [name="issue[body]"]');
 
 $(function() {
-  // Adjust the placeholder of the title input as well, to comply with the BDD
-  // story format
-  $ISSUE_TITLE.prop('placeholder', "Title (describe the story)");
-  // Let the user now immediately that a template is being fetched for the
-  // fresh issue they're about to create
-  $ISSUE_BODY.prop('placeholder', "Loading issue template...");
-  // Fetch template contents from a Github project repo directly (this is
-  // conventient because, being on the same domain (github.com), AJAX requests
-  // are possible)
-  $.get(TEMPLATE_PATH, function(contents, status) {
-    if (status == 'success') {
-      // This placeholder will be shown only when removing the entire contents
-      // provided by the issue template
-      $ISSUE_BODY.prop('placeholder', "Ignoring the issue template, are you?");
-      $ISSUE_BODY.val($.trim(contents));
-    } else {
-      // Notify the user that the template couldn't be fetched and the they
-      // should carry on w/ a blank issue body
-      $ISSUE_BODY.prop('placeholder', "Couldn't fetch issue template. Sorry!");
+  var TEMPLATE_PATH = 'https://rawgit.com/MattyAyOh/GitHubIssueGenerator/master/README.md';
+
+  chrome.runtime.sendMessage(
+    {method: "getTemplateLocation"}, function(response) 
+    {
+      TEMPLATE_PATH = response.location;
+
+      $ISSUE_BODY.prop('placeholder', "Loading issue template...");
+
+      $.get(TEMPLATE_PATH, function(contents, status) {
+        if (status == 'success') {
+          // This placeholder will be shown only when removing the entire contents
+          // provided by the issue template
+          $ISSUE_BODY.prop('placeholder', "Ignoring the issue template, are you?");
+          $ISSUE_BODY.val($.trim(contents));
+        } else {
+          // Notify the user that the template couldn't be fetched and the they
+          // should carry on w/ a blank issue body
+          $ISSUE_BODY.prop('placeholder', "Couldn't fetch issue template. Sorry!");
+        }
+      });
     }
-  });
+  );
+
   // Enable 'active placeholders' by reacting to clicks inside text blocks
   // between square brackets. They should get entirely selected when clicking
   // inside them, for ease of replacement
