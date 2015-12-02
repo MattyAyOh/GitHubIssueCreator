@@ -1,13 +1,10 @@
 var STORAGE_KEY = 'github-repos';
 
 $(function() {
-  // Default the list of repos to the uberVU/mozaic repo if nothing has been
-  // submitted yet
   if (localStorage[STORAGE_KEY] === undefined) {
     localStorage[STORAGE_KEY] = 'MattyAyOh/GitHubIssueGenerator';
   }
-  // Create a list of clickable repos, loaded from local storage (saved from
-  // the options page)
+
   var githubRepos = $.trim(localStorage[STORAGE_KEY]).split("\n");
   for (var i = 0, path, user, repo, href; i < githubRepos.length; i++) {
     path = githubRepos[i].split('/');
@@ -18,8 +15,8 @@ $(function() {
       '<a href="' + href + '">' + user + '/<strong>' + repo + '</strong></a>' +
     '</li>');
   }
-  // Catch click events on the repo links and communicate with the chrome tabs
-  // in order to load the corresponding repo location
+
+
   $('#repos a').click(function(e) {
     e.preventDefault();
     var repoLocation = $(e.currentTarget).attr('href');
@@ -27,12 +24,8 @@ $(function() {
     user = path[3];
     repo = path[4];
     chrome.runtime.sendMessage({method: "saveTemplateLocation", location: 'https://rawgit.com/' + user + '/' + repo + '/master/ISSUETEMPLATE.md'}, function(response) {});
-    // Attempt to fetch the instance of the currently-open tab
-    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-
+    
     chrome.tabs.create({url: repoLocation});
-      
-    });
     window.close();
   });
 });
