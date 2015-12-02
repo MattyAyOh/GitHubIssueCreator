@@ -9,7 +9,7 @@ $(function() {
   }
 
   $textarea.val(localStorage[STORAGE_KEY]);
-
+  console.log(localStorage['issueTemplate']);
   $submitButton.click(function() {
     localStorage[STORAGE_KEY] = $textarea.val();
   });

@@ -4,7 +4,7 @@ $(function() {
   // Default the list of repos to the uberVU/mozaic repo if nothing has been
   // submitted yet
   if (localStorage[STORAGE_KEY] === undefined) {
-    localStorage[STORAGE_KEY] = 'uberVU/mozaic';
+    localStorage[STORAGE_KEY] = 'MattyAyOh/GitHubIssueGenerator';
   }
   // Create a list of clickable repos, loaded from local storage (saved from
   // the options page)
@@ -17,6 +17,7 @@ $(function() {
     $('#repos').append('<li>' +
       '<a href="' + href + '">' + user + '/<strong>' + repo + '</strong></a>' +
     '</li>');
+    localStorage['issueTemplate'] = 'https://github.com/' + path[0] + '/' + path[1] + '/blob/master/ISSUETEMPLATE.md';
   }
   // Catch click events on the repo links and communicate with the chrome tabs
   // in order to load the corresponding repo location
