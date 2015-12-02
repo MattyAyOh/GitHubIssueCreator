@@ -8,36 +8,43 @@ $(function() {
     {method: "getTemplateLocation"}, function(response) 
     {
       TEMPLATE_PATH = response.location;
-
+      $ISSUE_TITLE.prop('placeholder', "Title (The most important part of the issue)");
       $ISSUE_BODY.prop('placeholder', "Loading issue template...");
 
-      $.get(TEMPLATE_PATH, function(contents, status) {
-        if (status == 'success') {
-          // This placeholder will be shown only when removing the entire contents
-          // provided by the issue template
-          $ISSUE_BODY.prop('placeholder', "Ignoring the issue template, are you?");
-          $ISSUE_BODY.val($.trim(contents));
-        } else {
-          // Notify the user that the template couldn't be fetched and the they
-          // should carry on w/ a blank issue body
+      $.get(TEMPLATE_PATH, function(contents, status) 
+      {
+        if (status == 'success') 
+        {
+          var markdown = "";
+          if( contents.indexOf("<code>") > -1 )
+          {
+            markdown = contents.split("<code>")[1].split("</code>")[0];
+          }
+
+          if( markdown == "" )
+          {
+            $ISSUE_BODY.prop('placeholder', "ERROR: ISSUETEMPLATE.md is not properly indented (markdown requires indents [4 spaces] to denote code)");
+          }
+          else
+          {
+            $ISSUE_BODY.prop('placeholder', "HEY!  Don't ignore the issue template.");            
+          }
+          $ISSUE_BODY.val(markdown);
+        } 
+        else 
+        {
           $ISSUE_BODY.prop('placeholder', "Couldn't fetch issue template. Sorry!");
         }
       });
-      // Enable 'active placeholders' by reacting to clicks inside text blocks
-      // between square brackets. They should get entirely selected when clicking
-      // inside them, for ease of replacement
-      $ISSUE_BODY.click(function() {
-        // Ignore this click if the user is already making a selection of their own
-        // XXX this might not work in other browsers, beware if porting
+
+
+      $ISSUE_BODY.click(function() 
+      {
         if (window.getSelection().toString().length) {
-        return;
+          return;
         }
         var position = $ISSUE_BODY.getCursorPosition();
-        // Once we have the position, we need to identify if there are brackets
-        // around the cursor. The fastest solution I could come up is to break the
-        // entire text into two, from that position, and check if the last bracket
-        // from the first part is a start one, and the first from the last part is
-        // an end one
+
         issueBody = $ISSUE_BODY.val();
         beforeCursor = issueBody.substr(0, position);
         afterCursor = issueBody.substr(position);
@@ -45,11 +52,6 @@ $(function() {
         beforeEndBracket = afterCursor.match(/^[^\[]*\]/);
         if (afterStartBracket && beforeEndBracket) 
         {
-          // Now that we have matched that we are inside a square bracket
-          // placeholder, we need to calculate where it begins and ends, in order
-          // to create a selection exactly between those positions. Luckily, we can
-          // easily detect the start and end position by offseting from the initial
-          // cursor position, using the length of the matched strings from both ends
           var selectFrom = position - afterStartBracket[0].length;
           var selectTo = position + beforeEndBracket[0].length;
           $ISSUE_BODY.selectRange(selectFrom, selectTo);
