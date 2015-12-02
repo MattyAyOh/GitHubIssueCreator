@@ -23,7 +23,7 @@ $(function() {
     path = repoLocation.split('/');
     user = path[3];
     repo = path[4];
-    chrome.runtime.sendMessage({method: "saveTemplateLocation", location: 'https://rawgit.com/' + user + '/' + repo + '/master/ISSUETEMPLATE.md'}, function(response) {});
+    chrome.runtime.sendMessage({method: "saveTemplateLocation", location: 'https://github.com/' + user + '/' + repo + '/blob/master/ISSUETEMPLATE.md'}, function(response) {});
     
     chrome.tabs.create({url: repoLocation});
     window.close();
