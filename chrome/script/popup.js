@@ -13,18 +13,20 @@ $(function() {
     path = githubRepos[i].split('/');
     user = path[0];
     repo = path[1];
-    href = 'https://github.com/' + path[0] + '/' + path[1] + '/issues/new';
+    href = 'https://github.com/' + user + '/' + repo + '/issues/new';
     $('#repos').append('<li>' +
       '<a href="' + href + '">' + user + '/<strong>' + repo + '</strong></a>' +
     '</li>');
-
-    chrome.runtime.sendMessage({method: "saveTemplateLocation", location: 'https://rawgit.com/' + path[0] + '/' + path[1] + '/master/ISSUETEMPLATE.md'}, function(response) {});
   }
   // Catch click events on the repo links and communicate with the chrome tabs
   // in order to load the corresponding repo location
   $('#repos a').click(function(e) {
     e.preventDefault();
     var repoLocation = $(e.currentTarget).attr('href');
+    path = repoLocation.split('/');
+    user = path[3];
+    repo = path[4];
+    chrome.runtime.sendMessage({method: "saveTemplateLocation", location: 'https://rawgit.com/' + user + '/' + repo + '/master/ISSUETEMPLATE.md'}, function(response) {});
     // Attempt to fetch the instance of the currently-open tab
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
       // Redirect the current tab if one is found, otherwise create a new one
@@ -34,5 +36,6 @@ $(function() {
         chrome.tabs.create({url: repoLocation});
       }
     });
+    window.close();
   });
 });
