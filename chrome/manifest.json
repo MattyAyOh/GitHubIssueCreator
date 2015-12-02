@@ -1,4 +1,8 @@
 {
+  "background": {
+      "persistent": false,
+      "scripts": ["script/background.js"]
+  },
   "name": "GitHub Issue Generator",
   "version": "0.1.0",
   "manifest_version": 2,
@@ -8,7 +12,7 @@
     "48": "icon48.png"
   },
   "permissions": [
-    "*://github.com/",
+    "*://rawgit.com/",
     "tabs"
   ],
   "content_scripts": [
