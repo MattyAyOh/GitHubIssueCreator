@@ -1,5 +1,9 @@
 ##### Specific Details
 
+As a [role]
+I want [feature]
+So that [benefit]
+
 ##### Steps to Reproduce
 
 1. 
