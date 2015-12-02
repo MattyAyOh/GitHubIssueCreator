@@ -11,5 +11,9 @@ $(function() {
   $textarea.val(localStorage[STORAGE_KEY]);
   $submitButton.click(function() {
     localStorage[STORAGE_KEY] = $textarea.val();
+    chrome.tabs.getCurrent(function(tab) 
+    {
+    	chrome.tabs.remove(tab.id, function() { });
+    });
   });
 });
