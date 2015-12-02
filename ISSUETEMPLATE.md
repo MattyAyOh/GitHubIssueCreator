@@ -1,27 +1,27 @@
-##### Specific Details
+	##### Specific Details
 
-As a [role]
-I want [feature]
-So that [benefit]
+	As a [role]
+	I want [feature]
+	So that [benefit]
 
-##### Steps to Reproduce
+	##### Steps to Reproduce
 
-1. 
+	1. 
 
-2. 
+	2. 
 
-3. 
+	3. 
 
-##### Expected Results
+	##### Expected Results
 
-##### Actual Results
+	##### Actual Results
 
----
+	---
 
-###### Testing Notes
+	###### Testing Notes
 
-###### Developer Notes
+	###### Developer Notes
 
-###### Build
+	###### Build
 
-###### Mac OS
+	###### Mac OS
