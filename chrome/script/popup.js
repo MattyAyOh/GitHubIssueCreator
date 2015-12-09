@@ -6,6 +6,7 @@ $(function() {
   }
 
   var githubRepos = $.trim(localStorage[STORAGE_KEY]).split("\n");
+  var user, repo, href;
   for (var i = 0, path, user, repo, href; i < githubRepos.length; i++) {
     path = githubRepos[i].split('/');
     user = path[0];
@@ -14,6 +15,13 @@ $(function() {
     $('#repos').append('<li>' +
       '<a href="' + href + '">' + user + '/<strong>' + repo + '</strong></a>' +
     '</li>');
+  }
+
+  if( githubRepos.length == 1 )
+  {
+    chrome.runtime.sendMessage({method: "saveTemplateLocation", location: 'https://github.com/' + user + '/' + repo + '/blob/master/ISSUETEMPLATE.md'}, function(response) {});
+    chrome.tabs.create({url: href});
+    window.close();
   }
 
 
