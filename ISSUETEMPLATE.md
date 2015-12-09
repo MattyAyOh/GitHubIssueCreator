@@ -1,22 +1,22 @@
 	##### Specific Details
 
-	As a [role]
-	I want [feature]
-	So that [benefit]
+	[throw in a nice description here]
 
 	##### Steps to Reproduce
 
-	1. 
+	1. [add/remove numbers as necessary]
 
 	2. 
 
 	3. 
 
 	##### Expected Results
+	[what it should do]
 
 	##### Actual Results
+	[what it is doing]
 
-	---
+	----
 
 	###### Testing Notes
 
