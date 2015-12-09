@@ -3,7 +3,7 @@ chrome.runtime.onMessage.addListener(
 	{
     if( request.method == "getTemplateLocation" )
     {
-      sendResponse({location: localStorage['issueTemplate']});
+      sendResponse({location: localStorage['issueTemplate'], defaultChecked: localStorage['templateChecked'], savedTemplate: localStorage['savedTemplate']});
     }
     else if( request.method == "saveTemplateLocation" )
     {
