@@ -6,18 +6,18 @@
   <link rel="stylesheet" type="text/css" href="options.css" />
 </head>
 <body>
-  <label for="repos">Repositories (one per line)</label><br>
+  <label for="repos">Repositories (one per line, template will be pulled from repo)</label><br>
   <textarea id="repos" cols="40" rows="10"></textarea><br>
 
   <div class="checkbox">
     <input id="template-checkbox" type="checkbox">
-    <label for="template-checkbox" id="addTime-label">Always use a default template:</label>
+    <label for="template-checkbox" id="addTime-label">Specify a template to always use, instead</label>
   </div>
 
   <br>
   <label for="template" id="template-label">Default Template</label><br>
   <textarea id="template" cols="40" rows="10"></textarea><br>
-  <button id="save">Save</button>
+  <button id="save" class="save_button">Save</button>
   <br><br>
   HOW TO USE:
   <ul>
