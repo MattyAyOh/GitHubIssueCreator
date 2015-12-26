@@ -8,8 +8,8 @@
   "manifest_version": 2,
   "description": "Create GitHub issues with custom templates automatically applied",
   "icons": {
-    "16": "icon16.png",
-    "48": "icon48.png"
+    "16": "github_black.png",
+    "48": "github_black.png"
   },
   "permissions": [
     "*://github.com/",
@@ -28,7 +28,7 @@
   ],
   "browser_action": {
     "default_icon": {
-      "19": "icon19.png"
+      "19": "github.png"
     },
     "default_title": "Create new Github Issue",
     "default_popup": "popup.html"
