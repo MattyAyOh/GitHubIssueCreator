@@ -6,24 +6,28 @@
   <link rel="stylesheet" type="text/css" href="options.css" />
 </head>
 <body>
-  <label for="repos">Repositories (one per line, template will be pulled from repo)</label><br>
-  <textarea id="repos" cols="40" rows="10"></textarea><br>
-
-  <div class="checkbox">
-    <input id="template-checkbox" type="checkbox">
-    <label for="template-checkbox" id="addTime-label">Specify a template to always use, instead</label>
+  <div id="readme">
+    HOW TO USE REPO-UNIQUE TEMPLATES:
   </div>
-
-  <br>
-  <label for="template" id="template-label">Default Template</label><br>
-  <textarea id="template" cols="40" rows="10"></textarea><br>
-  <button id="save" class="save_button">Save</button>
-  <br><br>
-  HOW TO USE:
-  <ul>
+  <ul id="readme-list">
     <li>Make sure there is a ISSUETEMPLATE.md file in the MASTER branch of your repository.</li>
     <li>Put whatever markdown you would like in your template in that file</li>
     <li>Indent everything in the template (4 spaces), so that it is recognized as "code"</li>
   </ul>
+
+  <hr id="readme-hr">
+
+  <label for="repos" id="repos-label">Repositories (one per line, issue template will be pulled from repo)</label><br>
+  <textarea id="repos" cols="40" rows="10"></textarea><br>
+
+  <div class="checkbox">
+    <input id="template-checkbox" type="checkbox">
+    <label for="template-checkbox" id="template-checkbox-label">Specify a template to always use, instead</label>
+  </div>
+
+  <label for="template" id="template-label">Default Template</label><br>
+  <textarea id="template" cols="40" rows="10"></textarea><br>
+  <button id="save" class="save_button">Save</button>
+
 </body>
 </html>

@@ -1,29 +1,145 @@
 textarea {
-	width: 400px;
-	height: 200px;
+	width: 30vw;
+	height: 15vw;
 	border: 3px solid #cccccc;
 	padding: 5px;
 	border: 2px solid #765942;
 	border-radius: 10px;
 	font-family: Tahoma, sans-serif;
+  font-size:1.5vw;
 }
 
+body {
+  background: #555;
+  display: -webkit-flex;
+  font-family: 'Avenir', 'NUNITO', 'Museo Sans', 'Muli', 'helvetica neue', helvetica, arial, sans-serif;
+  font-size: 1vw;
+  color: #FFF;
+  -webkit-flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-font-smoothing: antialiased;
+  -webkit-justify-content: center;
+  -webkit-user-select: none;
+}
+
+
 .save_button{
-border:1px solid #15aeec; -webkit-border-radius: 3px; -moz-border-radius: 3px;border-radius: 3px;font-size:12px;font-family:arial, helvetica, sans-serif; padding: 5px 10px 5px 10px; text-decoration:none; display:inline-block;text-shadow: -1px -1px 0 rgba(0,0,0,0.3);font-weight:bold; color: #FFFFFF;
- background-color: #49c0f0; background-image: -webkit-gradient(linear, left top, left bottom, from(#49c0f0), to(#2CAFE3));
- background-image: -webkit-linear-gradient(top, #49c0f0, #2CAFE3);
- background-image: -moz-linear-gradient(top, #49c0f0, #2CAFE3);
- background-image: -ms-linear-gradient(top, #49c0f0, #2CAFE3);
- background-image: -o-linear-gradient(top, #49c0f0, #2CAFE3);
- background-image: linear-gradient(to bottom, #49c0f0, #2CAFE3);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#49c0f0, endColorstr=#2CAFE3);
+  border:.1vw solid #15aeec;
+  -webkit-border-radius:.3vw;
+  -moz-border-radius:.3vw;
+  border-radius:.3vw;
+  font-size:.9vw;
+  font-family:'Avenir', 'NUNITO', 'Museo Sans', 'Muli', 'helvetica neue', helvetica, arial, sans-serif;
+  padding: .4vw .9vw .4vw .9dsvw;
+  text-decoration:none;
+  display:inline-block;
+  text-shadow: -.1vw -.1vw 0 rgba(0,0,0,0.3);
+  font-weight:bold;
+  color: #FFFFFF;
+  background-color: #49c0f0; background-image: -webkit-gradient(linear, left top, left bottom, from(#49c0f0), to(#2CAFE3));
+  background-image: -webkit-linear-gradient(top, #49c0f0, #2CAFE3);
+  background-image: -moz-linear-gradient(top, #49c0f0, #2CAFE3);
+  background-image: -ms-linear-gradient(top, #49c0f0, #2CAFE3);
+  background-image: -o-linear-gradient(top, #49c0f0, #2CAFE3);
+  background-image: linear-gradient(to bottom, #49c0f0, #2CAFE3);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#49c0f0, endColorstr=#2CAFE3);
 }
 
 .save_button:hover{
- border:1px solid #1090c3;
- background-color: #1ab0ec; background-image: -webkit-gradient(linear, left top, left bottom, from(#1ab0ec), to(#1a92c2));
+ border:.1vw solid #1090c3;
+ background-color: #1ab0ec;
+ background-image: -webkit-gradient(linear, left top, left bottom, from(#1ab0ec), to(#1a92c2));
  background-image: -webkit-linear-gradient(top, #1ab0ec, #1a92c2);
  background-image: -moz-linear-gradient(top, #1ab0ec, #1a92c2);
  background-image: -ms-linear-gradient(top, #1ab0ec, #1a92c2);
  background-image: -o-linear-gradient(top, #1ab0ec, #1a92c2);
  background-image: linear-gradient(to bottom, #1ab0ec, #1a92c2);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#1ab0ec, endColorstr=#1a92c2);
+}
+
+hr {
+    border: 0;
+    position: absolute;
+    height: .1vw;
+    background: #444;
+    background-image: -webkit-linear-gradient(left, #444, #000, #444);
+}
+
+#readme {
+  position:absolute;
+  top:3vw;
+  left:41vw;
+  cursor: default;
+}
+#readme-list {
+  position:absolute;
+  white-space:nowrap;
+  top:5vw;
+  left:30vw;
+  cursor: default;
+}
+
+#readme-hr {
+  position:absolute;
+  width:38vw;
+  left:31vw;
+  top:10.4vw;
+}
+
+#repos-label {
+  position:absolute;
+  left:36.2vw;
+  top:12vw;
+}
+
+#repos {
+  position:absolute;
+  left:36vw;
+  top:14vw;
+}
+
+#template-checkbox-label {
+  position:absolute;
+  top:30vw;
+  left:38vw;
+}
+
+#save {
+  position:absolute;
+  left:62vw;
+  top:29.8vw;
+}
+
+#template-label {
+  position:absolute;
+  left:47.4vw;
+  top:33vw;
+}
+
+#template {
+  position:absolute;
+  left:36vw;
+  top:35vw;
+}
+.checkbox label:before {
+  left:-1.5vw;
+  border-radius: 3px;
+  content: "";
+
+  width: 1.2vw;
+  height: 1.2vw;
+
+  position: absolute;
+  background-color: #ffffff;
+  box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);
+}
+
+input[type=checkbox] {
+    display: none;
+}
+
+input[type=checkbox]:checked + label:before {
+    content: "\2713";
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);
+    color: #000000;
+    text-align: center;
+    line-height: 1.5vw;
 }
