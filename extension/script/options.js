@@ -8,31 +8,31 @@ $(function() {
   var $templateCheckbox = $('#template-checkbox');
   var templateCheckbox = document.querySelector('input[id=template-checkbox]');
 
-  if (localStorage[STORAGE_KEY] === undefined) 
+  if (localStorage[STORAGE_KEY] === undefined)
   {
-    localStorage[STORAGE_KEY] = 'MattyAyOh/GitHubIssueGenerator';
+    localStorage[STORAGE_KEY] = 'MattyAyOh/GitHubIssueCreator';
   }
 
-  if (localStorage.getItem("templateChecked") == "YES") 
+  if (localStorage.getItem("templateChecked") == "YES")
   {
     templateCheckbox.checked = true;
     $templateTextArea.val(localStorage[TEMPLATE_KEY]);
   }
   showTemplateTextAreaIf(templateCheckbox.checked);
 
-  templateCheckbox.addEventListener('change', function () 
+  templateCheckbox.addEventListener('change', function ()
   {
     showTemplateTextAreaIf(templateCheckbox.checked);
   });
 
   $textarea.val(localStorage[STORAGE_KEY]);
-  $submitButton.click(function() 
+  $submitButton.click(function()
   {
     localStorage[STORAGE_KEY] = $textarea.val();
     isTemplateChecked = templateCheckbox.checked;
     isTemplateChecked ? localStorage.setItem("templateChecked", "YES") : localStorage.removeItem("templateChecked");
     isTemplateChecked ? localStorage.setItem(TEMPLATE_KEY, $templateTextArea.val()) : localStorage.removeItem(TEMPLATE_KEY);
-    chrome.tabs.getCurrent(function(tab) 
+    chrome.tabs.getCurrent(function(tab)
     {
     	chrome.tabs.remove(tab.id, function() { });
     });

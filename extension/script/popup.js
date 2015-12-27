@@ -2,7 +2,7 @@ var STORAGE_KEY = 'github-repos';
 
 $(function() {
   if (localStorage[STORAGE_KEY] === undefined) {
-    localStorage[STORAGE_KEY] = 'MattyAyOh/GitHubIssueGenerator';
+    localStorage[STORAGE_KEY] = 'MattyAyOh/GitHubIssueCreator';
   }
 
   var githubRepos = $.trim(localStorage[STORAGE_KEY]).split("\n");
@@ -32,7 +32,7 @@ $(function() {
     user = path[3];
     repo = path[4];
     chrome.runtime.sendMessage({method: "saveTemplateLocation", location: 'https://github.com/' + user + '/' + repo + '/blob/master/ISSUETEMPLATE.md'}, function(response) {});
-    
+
     chrome.tabs.create({url: repoLocation});
     window.close();
   });

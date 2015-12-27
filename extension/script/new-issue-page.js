@@ -2,10 +2,10 @@ var $ISSUE_TITLE = $('.composer [name="issue[title]"]');
 var $ISSUE_BODY = $('.composer [name="issue[body]"]');
 
 $(function() {
-  var TEMPLATE_PATH = 'https://github.com/MattyAyOh/GitHubIssueGenerator/master/ISSUETEMPLATE.md';
+  var TEMPLATE_PATH = 'https://github.com/MattyAyOh/GitHubIssueCreator/master/ISSUETEMPLATE.md';
 
   chrome.runtime.sendMessage(
-    {method: "getTemplateLocation"}, function(response) 
+    {method: "getTemplateLocation"}, function(response)
     {
       $ISSUE_TITLE.prop('placeholder', "Title (The most important part of the issue)");
 
@@ -15,7 +15,7 @@ $(function() {
         var savedTemplate = response.savedTemplate;
         if( savedTemplate == "")
         {
-          $ISSUE_BODY.prop('placeholder', "ERROR: Your saved template is empty"); 
+          $ISSUE_BODY.prop('placeholder', "ERROR: Your saved template is empty");
         }
         else
         {
@@ -23,14 +23,14 @@ $(function() {
           $ISSUE_BODY.prop('placeholder', "HEY!  Don't ignore the issue template.");
         }
       }
-      
+
       else
       {
         $ISSUE_BODY.prop('placeholder', "Loading issue template...");
 
-        $.get(TEMPLATE_PATH, function(contents, status) 
+        $.get(TEMPLATE_PATH, function(contents, status)
         {
-          if (status == 'success') 
+          if (status == 'success')
           {
             var markdown = "";
             if( contents.indexOf("<code>") > -1 )
@@ -44,23 +44,23 @@ $(function() {
             }
             else
             {
-              $ISSUE_BODY.prop('placeholder', "HEY!  Don't ignore the issue template.");            
+              $ISSUE_BODY.prop('placeholder', "HEY!  Don't ignore the issue template.");
             }
             $ISSUE_BODY.val(markdown);
-          } 
-          else 
+          }
+          else
           {
             $ISSUE_BODY.prop('placeholder', "Couldn't fetch issue template. Sorry!");
           }
-        }).fail(function() 
+        }).fail(function()
         {
           $ISSUE_TITLE.prop('placeholder', "Title (ERROR: ISSUETEMPLATE.MD NOT FOUND.  LOADING DEFAULT TEMPLATE)");
 
-          var TEMPLATE_PATH = 'https://github.com/MattyAyOh/GitHubIssueGenerator/blob/master/ISSUETEMPLATE.md';
-          $.get(TEMPLATE_PATH, function(contents, status) 
+          var TEMPLATE_PATH = 'https://github.com/MattyAyOh/GitHubIssueCreator/blob/master/ISSUETEMPLATE.md';
+          $.get(TEMPLATE_PATH, function(contents, status)
           {
             console.log(status);
-            if (status == 'success') 
+            if (status == 'success')
             {
               var markdown = "";
               if( contents.indexOf("<code>") > -1 )
@@ -74,15 +74,15 @@ $(function() {
               }
               else
               {
-                $ISSUE_BODY.prop('placeholder', "HEY!  Don't ignore the issue template.");            
+                $ISSUE_BODY.prop('placeholder', "HEY!  Don't ignore the issue template.");
               }
               $ISSUE_BODY.val(markdown);
-            } 
-            else 
+            }
+            else
             {
               $ISSUE_BODY.prop('placeholder', "Couldn't fetch issue template. Sorry!");
             }
-          }).fail(function() 
+          }).fail(function()
           {
             $ISSUE_BODY.prop('placeholder', "Couldn't fetch issue template. Sorry!");
           });
@@ -90,7 +90,7 @@ $(function() {
       }
 
 
-      $ISSUE_BODY.click(function() 
+      $ISSUE_BODY.click(function()
       {
         if (window.getSelection().toString().length) {
           return;
@@ -102,7 +102,7 @@ $(function() {
         afterCursor = issueBody.substr(position);
         afterStartBracket = beforeCursor.match(/\[[^\]]*$/);
         beforeEndBracket = afterCursor.match(/^[^\[]*\]/);
-        if (afterStartBracket && beforeEndBracket) 
+        if (afterStartBracket && beforeEndBracket)
         {
           var selectFrom = position - afterStartBracket[0].length;
           var selectTo = position + beforeEndBracket[0].length;
