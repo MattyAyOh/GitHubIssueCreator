@@ -4,5 +4,6 @@
 
 --------------
 
-Chrome Extension button popover from:
+Original Fork from:
 https://github.com/skidding/github-issue-template
+(I know I didn't do this correctly)
