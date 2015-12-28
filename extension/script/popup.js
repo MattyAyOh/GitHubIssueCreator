@@ -2,7 +2,7 @@ var STORAGE_KEY = 'github-repos';
 
 $(function() {
   if (localStorage[STORAGE_KEY] === undefined) {
-    localStorage[STORAGE_KEY] = 'MattyAyOh/GitHubIssueCreator';
+    localStorage[STORAGE_KEY] = 'MattyAyOh/Mortality';
   }
 
   var githubRepos = $.trim(localStorage[STORAGE_KEY]).split("\n");

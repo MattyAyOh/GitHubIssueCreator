@@ -10,7 +10,7 @@ $(function() {
 
   if (localStorage[STORAGE_KEY] === undefined)
   {
-    localStorage[STORAGE_KEY] = 'MattyAyOh/GitHubIssueCreator';
+    localStorage[STORAGE_KEY] = 'MattyAyOh/Mortality';
   }
 
   if (localStorage.getItem("templateChecked") == "YES")
