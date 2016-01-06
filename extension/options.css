@@ -77,47 +77,53 @@ hr {
   cursor: default;
 }
 
+#theme-checkbox-label {
+  position:absolute;
+  top:3vw;
+  left:70vw;
+}
+
 #readme-hr {
   position:absolute;
   width:38vw;
   left:31vw;
-  top:10.4vw;
+  top:13vw;
 }
 
 #repos-label {
   position:absolute;
   left:36.2vw;
-  top:12vw;
+  top:14.6vw;
 }
 
 #repos {
   position:absolute;
   left:36vw;
-  top:14vw;
+  top:16.6vw;
 }
 
 #template-checkbox-label {
   position:absolute;
-  top:30vw;
+  top:32.6vw;
   left:38vw;
 }
 
 #save {
   position:absolute;
   left:62vw;
-  top:29.8vw;
+  top:32.4vw;
 }
 
 #template-label {
   position:absolute;
   left:47.4vw;
-  top:33vw;
+  top:35.6vw;
 }
 
 #template {
   position:absolute;
   left:36vw;
-  top:35vw;
+  top:37.6vw;
 }
 .checkbox label:before {
   left:-1.5vw;

@@ -7,6 +7,7 @@ $(function() {
   var $submitButton = $('#save');
   var $templateCheckbox = $('#template-checkbox');
   var templateCheckbox = document.querySelector('input[id=template-checkbox]');
+  var themeCheckbox = document.querySelector('input[id=theme-checkbox]');
 
   if (localStorage[STORAGE_KEY] === undefined)
   {
@@ -18,8 +19,23 @@ $(function() {
     templateCheckbox.checked = true;
     $templateTextArea.val(localStorage[TEMPLATE_KEY]);
   }
-  showTemplateTextAreaIf(templateCheckbox.checked);
 
+  if( localStorage.getItem("white") == "YES" )
+  {
+    themeCheckbox.checked = true;
+    chrome.browserAction.setIcon({path: "../github.png"});
+  }
+  else
+  {
+    chrome.browserAction.setIcon({path: "../github2.png"});
+  }
+
+  themeCheckbox.addEventListener('change', function()
+  {
+    updateThemeToWhiteIf(themeCheckbox.checked);
+  });
+
+  showTemplateTextAreaIf(templateCheckbox.checked);
   templateCheckbox.addEventListener('change', function ()
   {
     showTemplateTextAreaIf(templateCheckbox.checked);
@@ -39,11 +55,28 @@ $(function() {
   });
 });
 
-function showTemplateTextAreaIf(isChecked) {
-  if (isChecked) {
+function updateThemeToWhiteIf(isChecked) 
+{
+  if( isChecked )
+  {
+    localStorage.setItem("white", "YES");
+    chrome.browserAction.setIcon({path: "../github.png"});
+  }
+  else
+  {
+    localStorage.removeItem("white");
+    chrome.browserAction.setIcon({path: "../github2.png"});
+  }
+}
+function showTemplateTextAreaIf(isChecked) 
+{
+  if( isChecked ) 
+  {
       $('#template').show();
       $('#template-label').show();
-  } else {
+  } 
+  else 
+  {
       $('#template').hide();
       $('#template-label').hide();
   }
