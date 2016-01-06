@@ -90,8 +90,23 @@ $(function() {
       }
 
 
+			$('body').keyup(function(e) {
+			  console.log('keyup called');
+			  var code = e.keyCode || e.which;
+			  if (code == '9') 
+			  {
+					var position = $ISSUE_BODY.getCursorPosition();
+					issueBody = $ISSUE_BODY.val();
+	        var match = /\[([^\]]+)\]/.exec(issueBody);
+					if (match) 
+					{
+					    $ISSUE_BODY.selectRange(match.index, match.index+match[0].length);
+					}
+			  }
+			});
+
       $ISSUE_BODY.click(function()
-      {
+      {	
         if (window.getSelection().toString().length) {
           return;
         }
