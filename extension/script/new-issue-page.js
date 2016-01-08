@@ -97,10 +97,10 @@ $(function() {
 			  {
 					var position = $ISSUE_BODY.getCursorPosition();
 					issueBody = $ISSUE_BODY.val();
-	        var match = /\[([^\]]+)\]/.exec(issueBody);
+	        var match = /(?:^|[^!])(\[[^\]]+\])/.exec(issueBody);
 					if (match) 
 					{
-					    $ISSUE_BODY.selectRange(match.index, match.index+match[0].length);
+					    $ISSUE_BODY.selectRange(match.index+1, match.index+match[0].length);
 					}
 			  }
 			});
