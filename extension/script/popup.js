@@ -7,10 +7,17 @@ $(function() {
 
   var githubRepos = $.trim(localStorage[STORAGE_KEY]).split("\n");
   var user, repo, href;
+  var templateName = "ISSUETEMPLATE.md";;
   for (var i = 0, path, user, repo, href; i < githubRepos.length; i++) {
     path = githubRepos[i].split('/');
     user = path[0];
     repo = path[1];
+
+    if( repo.indexOf('[') > -1 )
+    {
+      templateName = repo.substring(repo.lastIndexOf("[")+1,repo.lastIndexOf("]")) + ".md";
+    }
+
     href = 'https://github.com/' + user + '/' + repo + '/issues/new';
     $('#repos').append('<li>' +
       '<a href="' + href + '">' + user + '/<strong>' + repo + '</strong></a>' +
@@ -19,11 +26,7 @@ $(function() {
 
   if( githubRepos.length == 1 )
   {
-    var templateName = "ISSUETEMPLATE.md";
-    if( repo.indexOf('[') > -1 )
-    {
-      templateName = repo.substring(repo.lastIndexOf("[")+1,repo.lastIndexOf("]")) + ".md";
-    }
+    href = href.replace(/\[(.+?)\]/g, '');
     chrome.runtime.sendMessage({method: "saveTemplateLocation", location: 'https://github.com/' + user + '/' + repo + '/blob/master/' + templateName }, function(response) {});
     chrome.tabs.create({url: href});
     window.close();
@@ -41,6 +44,8 @@ $(function() {
     {
       templateName = repo.substring(repo.lastIndexOf("[")+1,repo.lastIndexOf("]")) + ".md";
     }
+    repo = repo.replace(/\[(.+?)\]/g, '');
+    repoLocation = repoLocation.replace(/\[(.+?)\]/g, '');
     chrome.runtime.sendMessage({method: "saveTemplateLocation", location: 'https://github.com/' + user + '/' + repo + '/blob/master/' + templateName }, function(response) {});
 
     chrome.tabs.create({url: repoLocation});
