@@ -5,7 +5,8 @@
     ## Specific Details
     - [ ] **Thing**
      - Things that are known
-    <br><br>
+     
+     
     - [ ] **Other**
     
     
@@ -13,7 +14,8 @@
     The action of this relates to...
     
     ## Test Cases
-    - [ ] DO THIS <br>**->** check that `Thing` happened
+    - [ ] DO THIS  
+    **->** check that `Thing` happened
     
     ## Test Notes
     This supports [User Story #N](https://github.com/TechSmith/Snagit/issues/)
