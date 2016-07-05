@@ -19,7 +19,12 @@ $(function() {
 
   if( githubRepos.length == 1 )
   {
-    chrome.runtime.sendMessage({method: "saveTemplateLocation", location: 'https://github.com/' + user + '/' + repo + '/blob/master/ISSUETEMPLATE.md'}, function(response) {});
+    var templateName = "ISSUETEMPLATE.md";
+    if( repo.indexOf('[') > -1 )
+    {
+      templateName = repo.substring(repo.lastIndexOf("[")+1,repo.lastIndexOf("]")) + ".md";
+    }
+    chrome.runtime.sendMessage({method: "saveTemplateLocation", location: 'https://github.com/' + user + '/' + repo + '/blob/master/' + templateName }, function(response) {});
     chrome.tabs.create({url: href});
     window.close();
   }
@@ -31,7 +36,12 @@ $(function() {
     path = repoLocation.split('/');
     user = path[3];
     repo = path[4];
-    chrome.runtime.sendMessage({method: "saveTemplateLocation", location: 'https://github.com/' + user + '/' + repo + '/blob/master/ISSUETEMPLATE.md'}, function(response) {});
+    var templateName = "ISSUETEMPLATE.md";
+    if( repo.indexOf('[') > -1 )
+    {
+      templateName = repo.substring(repo.lastIndexOf("[")+1,repo.lastIndexOf("]")) + ".md";
+    }
+    chrome.runtime.sendMessage({method: "saveTemplateLocation", location: 'https://github.com/' + user + '/' + repo + '/blob/master/' + templateName }, function(response) {});
 
     chrome.tabs.create({url: repoLocation});
     window.close();
