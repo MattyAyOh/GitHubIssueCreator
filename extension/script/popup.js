@@ -26,6 +26,7 @@ $(function() {
 
   if( githubRepos.length == 1 )
   {
+    repo = repo.replace(/\[(.+?)\]/g, '');
     href = href.replace(/\[(.+?)\]/g, '');
     chrome.runtime.sendMessage({method: "saveTemplateLocation", location: 'https://github.com/' + user + '/' + repo + '/blob/master/' + templateName }, function(response) {});
     chrome.tabs.create({url: href});
