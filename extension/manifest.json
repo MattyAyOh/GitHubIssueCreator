@@ -1,11 +1,11 @@
 {
   "background": {
-      "persistent": false,
-      "scripts": ["script/background.js"]
+    "persistent": false,
+    "service_worker": "service_worker.js"
   },
   "name": "GitHub Issue Creator",
   "version": "0.2.0",
-  "manifest_version": 2,
+  "manifest_version": 3,
   "description": "Create GitHub issues with custom templates automatically applied",
   "icons": {
     "16": "github_black.png",
@@ -16,7 +16,9 @@
   ],
   "content_scripts": [
     {
-      "matches": ["*://github.com/*/issues/new"],
+      "matches": [
+        "*://github.com/*/issues/new"
+      ],
       "js": [
         "script/lib/jquery.min.js",
         "script/lib/jquery.cursor-position.js",
@@ -25,12 +27,16 @@
       ]
     }
   ],
-  "browser_action": {
+  "options_page": "options.html",
+  "action": {
     "default_icon": {
       "19": "github2.png"
     },
     "default_title": "Create new Github Issue",
     "default_popup": "popup.html"
   },
-  "options_page": "options.html"
+  "content_security_policy": {},
+  "host_permissions": [
+    "*://github.com/"
+  ]
 }
