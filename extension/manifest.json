@@ -4,7 +4,7 @@
       "scripts": ["script/background.js"]
   },
   "name": "GitHub Issue Creator",
-  "version": "0.1.9",
+  "version": "0.2.0",
   "manifest_version": 2,
   "description": "Create GitHub issues with custom templates automatically applied",
   "icons": {
@@ -12,8 +12,7 @@
     "48": "github_black.png"
   },
   "permissions": [
-    "*://github.com/",
-    "tabs"
+    "*://github.com/"
   ],
   "content_scripts": [
     {
